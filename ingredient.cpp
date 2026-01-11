@@ -19,7 +19,7 @@ void Ingredient::display()
          << " (alert level: " << threshold << ")" << endl;
 
     if (quantity < threshold)
-        cout << "     ⚠ Warning: low stock for " << name << "!" << endl;
+        cout << "     [!] Warning: low stock for " << name << "!" << endl;
 }
 
 bool Ingredient::use(int q)
@@ -28,7 +28,7 @@ bool Ingredient::use(int q)
     {
         quantity -= q;
         if (quantity < threshold)
-            cout << "     ⚠ Warning : low stock for " << name << " !" << endl;
+            cout << "     [!] Warning: low stock for " << name << "!" << endl;
         return true;
     }
     return false;

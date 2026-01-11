@@ -8,20 +8,20 @@
 #include <string>
 #include <vector>
 #include "ingredient.h"
+#include "drink.h"
 
 using namespace std;
 
 // =======================
-// Cocktail
+// Cocktail (hérite de Drink)
 // =======================
-class Cocktail
+class Cocktail : public Drink
 {
 public:
-    string name;
     vector<IngredientLine> ingredients;
 
-    Cocktail(string n, vector<IngredientLine> ingredients_list);
-    void display();
+    Cocktail(const string& n, vector<IngredientLine> ingredients_list);
+    void display() override;
     bool checkIfCanBeDone(vector<Ingredient>& stock);
     void prepare(vector<Ingredient> &stock);
 };

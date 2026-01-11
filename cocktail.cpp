@@ -10,8 +10,8 @@ using namespace std;
 // =======================
 // Cocktail Implementation
 // =======================
-Cocktail::Cocktail(string n, vector<IngredientLine> ingredients_list)
-    : name(n), ingredients(ingredients_list) {}
+Cocktail::Cocktail(const string& n, vector<IngredientLine> ingredients_list)
+    : Drink(n), ingredients(ingredients_list) {}
 
 void Cocktail::display()
 {
@@ -43,7 +43,7 @@ bool Cocktail::checkIfCanBeDone(vector<Ingredient>& stock)
 
         if (!ingredient_ok)
         {
-            cout << "     ⚠ Missing " << li.name
+            cout << " [!] Missing " << li.name
                  << " to prepare " << name << endl;
             can_be_cooked = false;
         }
@@ -64,5 +64,5 @@ void Cocktail::prepare(vector<Ingredient> &stock)
             }
         }
     }
-    cout << name << " is prepared! 🍹🍸" << endl;
+    cout << name << " is prepared! " << endl;
 }

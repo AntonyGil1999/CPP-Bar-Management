@@ -12,14 +12,27 @@ using namespace std;
 // =======================
 Bar::Bar() {}
 
-void Bar::addStock(const Ingredient &ingr)
+Bar::~Bar()
 {
-    stock.push_back(ingr);
+    for (Drink* d : carte)
+        delete d;
 }
 
-void Bar::addCocktail(const Cocktail &coc)
+// SURCHARGE DE FONCTION - Version 1 (avec objet Ingredient)
+void Bar::addStock(const Ingredient &ingr) 
+{ 
+    stock.push_back(ingr); 
+}
+
+// SURCHARGE DE FONCTION - Version 2 (avec paramètres séparés)
+void Bar::addStock(string n, int q, int t)
 {
-    carte.push_back(coc);
+    stock.push_back(Ingredient(n, q, t));
+}
+
+void Bar::addCocktail(Cocktail* coc) 
+{ 
+    carte.push_back(coc); 
 }
 
 void Bar::displayStock()
@@ -32,8 +45,8 @@ void Bar::displayStock()
 void Bar::displayCarte()
 {
     cout << "Cocktail menu:" << endl;
-    for (Cocktail &coc : carte)
-        coc.display();
+    for (Drink* d : carte)
+        d->display();
 }
 
 void Bar::displayMainMenu()
@@ -49,10 +62,11 @@ void Bar::displayMainMenu()
 
 Cocktail* Bar::getCocktail(const string& name)
 {
-    for (Cocktail& c : carte)
+    for (Drink* d : carte)
     {
-        if (c.name == name)
-            return &c;
+        Cocktail* c = dynamic_cast<Cocktail*>(d);
+        if (c && c->name == name)
+            return c;
     }
     return nullptr;
 }
@@ -62,21 +76,20 @@ void Bar::cookCocktail()
     cout << "Available cocktails:" << endl;
 
     vector<Cocktail *> available;
-    // list all cocktails from the menu
-    for (Cocktail& cocktail : carte)
+    for (Drink* d : carte)
     {
-        if (cocktail.checkIfCanBeDone(stock))
+        Cocktail* c = dynamic_cast<Cocktail*>(d);
+        if (c && c->checkIfCanBeDone(stock))
         {
             cout << "   " << available.size() + 1
-                 << " - " << cocktail.name << endl;
-            available.push_back(&cocktail);
+                 << " - " << c->name << endl;
+            available.push_back(c);
         }
     }
 
     if (available.empty())
     {
-        cout << "No cocktails can be prepared with the current stock."
-             << endl;
+        cout << "No cocktails can be prepared with the current stock." << endl;
         return;
     }
 

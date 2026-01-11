@@ -8,22 +8,30 @@
 #include <vector>
 #include <string>
 #include "ingredient.h"
+#include "drink.h"
 #include "cocktail.h"
 
 using namespace std;
 
 // =======================
-// Bar
+// Bar (polymorphique)
 // =======================
 class Bar
 {
 public:
     vector<Ingredient> stock;
-    vector<Cocktail> carte;
+    vector<Drink*> carte;
 
     Bar();
+    ~Bar();
+    
+    // SURCHARGE DE FONCTION - Version 1 (avec objet Ingredient)
     void addStock(const Ingredient &ingr);
-    void addCocktail(const Cocktail &coc);
+    
+    // SURCHARGE DE FONCTION - Version 2 (avec paramètres séparés)
+    void addStock(string n, int q, int t);
+    
+    void addCocktail(Cocktail* coc);
     void displayStock();
     void displayCarte();
     void displayMainMenu();
