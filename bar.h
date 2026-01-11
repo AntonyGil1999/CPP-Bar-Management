@@ -1,3 +1,7 @@
+// =======================
+// bar.h
+// Bar management - Antony GIL
+// =======================
 #ifndef BAR_H
 #define BAR_H
 
@@ -5,16 +9,21 @@
 #include <string>
 #include "ingredient.h"
 #include "cocktail.h"
+
 using namespace std;
 
-class Bar {
+// =======================
+// Bar
+// =======================
+class Bar
+{
 public:
     vector<Ingredient> stock;
     vector<Cocktail> carte;
-    
+
     Bar();
-    void addStock(const Ingredient& ingr);
-    void addCocktail(const Cocktail& coc);
+    void addStock(const Ingredient &ingr);
+    void addCocktail(const Cocktail &coc);
     void displayStock();
     void displayCarte();
     void displayMainMenu();
