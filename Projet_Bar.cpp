@@ -15,7 +15,11 @@ public:
     int threshold;
 
     Ingredient(string n, int q, int t)
-        : name(n), quantity(q), threshold(t) {}
+    {
+        name = n;
+        quantity = q;
+        threshold = t;
+    }
 
     void display()
     {
@@ -49,34 +53,42 @@ public:
     int quantity_needed;
 
     IngredientLine(string n, int q)
-        : name(n), quantity_needed(q) {}
+    {
+        name = n;
+        quantity_needed = q;
+    }
 };
 
 // =======================
-// Drink (classe abstraite)
+// Drink (abstract class)
 // =======================
 class Drink
 {
 public:
     string name;
 
-    Drink(const string& n) : name(n) {}
+    Drink(const string& n)
+    {
+        name = n;
+    }
 
-    virtual void display() = 0; // fonction virtuelle pure
+    virtual void display() = 0; // pure virtual function
 
     virtual ~Drink() {}
 };
 
 // =======================
-// Cocktail (hérite de Drink)
+// Cocktail (inherits from Drink)
 // =======================
 class Cocktail : public Drink
 {
 public:
     vector<IngredientLine> ingredients;
 
-    Cocktail(const string& n, vector<IngredientLine> ingredients_list)
-        : Drink(n), ingredients(ingredients_list) {}
+    Cocktail(const string& n, vector<IngredientLine> ingredients_list) : Drink(n)
+    {
+        ingredients = ingredients_list;
+    }
 
     void display() override
     {
@@ -129,12 +141,12 @@ public:
                 }
             }
         }
-        cout << name << " is prepared! " << endl;
+        cout << name << " is prepared!" << endl;
     }
 };
 
 // =======================
-// Bar (polymorphique)
+// Bar (polymorphic)
 // =======================
 class Bar
 {
@@ -150,13 +162,13 @@ public:
             delete d;
     }
 
-    // SURCHARGE DE FONCTION - Version 1 (avec objet Ingredient)
+    // FUNCTION OVERLOAD - Version 1 (with Ingredient object)
     void addStock(const Ingredient &ingr) 
     { 
         stock.push_back(ingr); 
     }
 
-    // SURCHARGE DE FONCTION - Version 2 (avec paramètres séparés)
+    // FUNCTION OVERLOAD - Version 2 (with separate parameters)
     void addStock(string n, int q, int t)
     {
         stock.push_back(Ingredient(n, q, t));
@@ -301,7 +313,7 @@ int main()
     bar.addStock(Ingredient("Lime Juice", 10, 2));
     bar.addStock(Ingredient("Tequila", 10, 2));
 
-    // ============== LISTES D'INGRÉDIENTS ==============
+    // ============== INGREDIENT LISTS ==============
     vector<IngredientLine> listeIngredient_Mojito = { 
         IngredientLine("Rhum",3), IngredientLine("Juice",2), IngredientLine("Lime Juice",1) 
     };
@@ -318,7 +330,7 @@ int main()
         IngredientLine("Rhum",3), IngredientLine("Lime Juice",2), IngredientLine("Juice",1) 
     };
 
-    // ============== AJOUT DES COCKTAILS ==============
+    // ============== ADD COCKTAILS ==============
     bar.addCocktail(new Cocktail("Mojito", listeIngredient_Mojito));
     bar.addCocktail(new Cocktail("Martini", listeIngredient_Martini));
     bar.addCocktail(new Cocktail("Margarita", listeIngredient_Margarita));

@@ -9,6 +9,9 @@ using namespace std;
 // =======================
 // Drink Implementation
 // =======================
-Drink::Drink(const string& n) : name(n) {}
+Drink::Drink(const string& n)
+{
+    name = n;
+}
 
 Drink::~Drink() {}

@@ -25,10 +25,10 @@ public:
     Bar();
     ~Bar();
     
-    // SURCHARGE DE FONCTION - Version 1 (avec objet Ingredient)
+    // FUNCTION OVERLOAD - Version 1 (with Ingredient object)
     void addStock(const Ingredient &ingr);
     
-    // SURCHARGE DE FONCTION - Version 2 (avec paramètres séparés)
+    // FUNCTION OVERLOAD - Version 2 (with separate parameters)
     void addStock(string n, int q, int t);
     
     void addCocktail(Cocktail* coc);

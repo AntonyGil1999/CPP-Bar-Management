@@ -18,13 +18,13 @@ Bar::~Bar()
         delete d;
 }
 
-// SURCHARGE DE FONCTION - Version 1 (avec objet Ingredient)
+// FUNCTION OVERLOAD - Version 1 (with Ingredient object)
 void Bar::addStock(const Ingredient &ingr) 
 { 
     stock.push_back(ingr); 
 }
 
-// SURCHARGE DE FONCTION - Version 2 (avec paramètres séparés)
+// FUNCTION OVERLOAD - Version 2 (with separate parameters)
 void Bar::addStock(string n, int q, int t)
 {
     stock.push_back(Ingredient(n, q, t));

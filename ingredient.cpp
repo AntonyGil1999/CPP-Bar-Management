@@ -11,7 +11,11 @@ using namespace std;
 // Ingredient Implementation
 // =======================
 Ingredient::Ingredient(string n, int q, int t)
-    : name(n), quantity(q), threshold(t) {}
+{
+    name = n;
+    quantity = q;
+    threshold = t;
+}
 
 void Ingredient::display()
 {
@@ -38,4 +42,7 @@ bool Ingredient::use(int q)
 // IngredientLine Implementation
 // =======================
 IngredientLine::IngredientLine(string n, int q)
-    : name(n), quantity_needed(q) {}
+{
+    name = n;
+    quantity_needed = q;
+}

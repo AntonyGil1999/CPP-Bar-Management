@@ -18,7 +18,7 @@ public:
     string name;
 
     Drink(const string& n);
-    virtual void display() = 0; // fonction virtuelle pure
+    virtual void display() = 0; // pure virtual function
     virtual ~Drink();
 };
 

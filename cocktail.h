@@ -13,7 +13,7 @@
 using namespace std;
 
 // =======================
-// Cocktail (hérite de Drink)
+// Cocktail (inherits from Drink)
 // =======================
 class Cocktail : public Drink
 {
